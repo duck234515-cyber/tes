@@ -37,22 +37,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createParticles();
 
-    // Form submission handling
-    form.addEventListener('submit', (e) => {
+   // Form submission handling
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Disable button and show loading state
+        // 버튼 비활성화 및 로딩 상태 표시
         submitBtn.disabled = true;
         const originalText = submitBtn.innerText;
         submitBtn.innerText = '신청 처리 중...';
 
-        // Simulate API call
-        setTimeout(() => {
-            alert('신청이 성공적으로 접수되었습니다!\n승인 결과는 이메일로 안내해 드립니다.');
+        // 1. 폼 데이터 수집
+        const formData = {
+            name: document.getElementById('name').value,
+            studentId: document.getElementById('studentId').value,
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            purpose: document.getElementById('purpose').value
+        };
+
+        try {
+            // 2. 구글 웹 앱으로 데이터 전송
+            await fetch('https://script.google.com/macros/s/AKfycbxsTTHS6kwYOihq5-ZBeFLqi_l6yUIUZYVC5VXuITx5OmNiczWVX3vW0rihCU2hge_OqQ/exec', {
+                method: 'POST',
+                mode: 'no-cors', // 구글 시트 연동 필수 설정
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            // 3. 성공 처리 (no-cors 모드에서는 응답을 읽을 수 없으므로 바로 성공 알림)
+            alert('신청이 성공적으로 접수되었습니다!');
             form.reset();
+        } catch (error) {
+            // 4. 에러 처리
+            alert('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            console.error('Error!', error.message);
+        } finally {
+            // 버튼 상태 복구
             submitBtn.disabled = false;
             submitBtn.innerText = originalText;
-        }, 1500);
+        }
     });
 
     // Input focus effects
