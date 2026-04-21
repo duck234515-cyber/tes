@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 실습실 이용 신청 | AI INNOVATION LAB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <main class="registration-card">
+            <header class="header">
+                <h1>AI Lab Registration</h1>
+                <p>AI 혁신 실습실 이용을 위한 정보를 입력해주세요.</p>
+            </header>
+
+            <form id="registrationForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="name">성함</label>
+                        <input type="text" id="name" name="name" placeholder="홍길동" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">학번/사번</label>
+                        <input type="text" id="studentId" name="studentId" placeholder="20240001" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">소속 학과/부서</label>
+                    <input type="text" id="department" name="department" placeholder="인공지능학과" required>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="date">예약 희망일</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">희망 시간</label>
+                        <select id="time" name="time" required>
+                            <option value="">시간 선택</option>
+                            <option value="09:00">09:00 - 12:00</option>
+                            <option value="13:00">13:00 - 16:00</option>
+                            <option value="16:00">16:00 - 19:00</option>
+                            <option value="19:00">19:00 - 22:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="purpose">이용 목적 (프로젝트 명 또는 연구 주제)</label>
+                    <textarea id="purpose" name="purpose" placeholder="딥러닝 모델 학습 및 성능 테스트..." required></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree">개인정보 수집 및 이용 약관에 동의합니다.</label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">신청 완료</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
